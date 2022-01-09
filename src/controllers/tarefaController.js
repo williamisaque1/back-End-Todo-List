@@ -27,9 +27,8 @@ const add = async (id, conteudo, realizada) => {
     throw new Error(err);
   }
 };
-const modificar = async (id, realizada, createdAt) => {
+const modificar = async (id, realizada) => {
   try {
-    console.log("createaddddd", createdAt);
     const { conteudo } = await tarefa.findOne({
       raw: true,
       where: { id: id },
@@ -40,7 +39,6 @@ const modificar = async (id, realizada, createdAt) => {
         id,
         conteudo,
         realizada,
-        createdAt,
       },
       {
         where: {
