@@ -16,10 +16,13 @@ const tarefa = conectar.define(
     realizada: { type: DataTypes.BOOLEAN },
   },
   {
-    timestamps: false,
+    timestamps: true,
   }
 );
- tarefa.sync({ force: false }).then(()=>{}).catch((err)=>{
-     console.log(err)
- })
+tarefa
+  .sync({ force: false })
+  .then(() => {})
+  .catch((err) => {
+    console.log(err);
+  });
 module.exports = tarefa;

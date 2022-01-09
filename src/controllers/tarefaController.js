@@ -4,8 +4,12 @@ const tarefa = require("../database/Tarefa");
 
 const listar = async () => {
   try {
-    const dados = await tarefa.findAll({ raw: true });
-    return dados.reverse();
+    const dados = await tarefa.findAll({
+      raw: true,
+      order: [["createdAt", "DESC"]],
+    });
+    // console.log(dados);
+    return dados;
   } catch (err) {
     throw new Error(err);
   }
@@ -23,9 +27,32 @@ const add = async (id, conteudo, realizada) => {
     throw new Error(err);
   }
 };
-const modificar = () => {
-  let id = req.params.id;
-  res.status(201).send(`Requisição recebida com sucesso! ${id}`);
+const modificar = async (id, realizada, createdAt) => {
+  try {
+    console.log("createaddddd", createdAt);
+    const { conteudo } = await tarefa.findOne({
+      raw: true,
+      where: { id: id },
+    });
+
+    const dados = await tarefa.update(
+      {
+        id,
+        conteudo,
+        realizada,
+        createdAt,
+      },
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+
+    return dados;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 const deletar = async (id) => {
   try {
@@ -38,7 +65,6 @@ const deletar = async (id) => {
   } catch (err) {
     throw new Error(err);
   }
-  res.status(200).send(`Requisição recebida com sucesso! ${id}`);
 };
 module.exports = {
   add,
