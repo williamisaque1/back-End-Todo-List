@@ -5,8 +5,8 @@ const app = express();
 app.use(
   cors({
     origin:
-      "http://192.168.0.17:3000" ||
-      "https://app-front-end-todo-list.herokuapp.com",
+      "https://app-front-end-todo-list.herokuapp.com" |
+      "http://192.168.0.17:3000",
   })
 );
 app.use(express.json());
