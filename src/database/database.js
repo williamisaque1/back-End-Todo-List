@@ -11,7 +11,6 @@ const conectar = new Sequelize(
 
     dialectOptions: {
       ssl: {
-        require: true,
         rejectUnauthorized: false,
       },
     },
