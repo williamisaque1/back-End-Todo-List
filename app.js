@@ -6,7 +6,7 @@ app.use(
   cors({
     origin:
       "https://app-front-end-todo-list.herokuapp.com" |
-      "http://192.168.0.17:3000",
+      "https://192.168.0.17:3000",
   })
 );
 app.use(express.json());
